@@ -5,6 +5,8 @@ const mongoose = require("./connection");
 // IMPORT YOUR MODELS BELOW
 ///////////////////////////////////////////
 
+const Activity = require("../models/activity")
+
 ///////////////////////////////////////////
 // DO YOUR DATABASE OPERATIONS IN BELOW FUNCTION
 ///////////////////////////////////////////
@@ -14,6 +16,13 @@ const seed = async () => {
   mongoose.connection.db.dropDatabase();
 
   //*********Code Goes Here
+
+
+
+
+
+
+
 
   //***************************** */
 
