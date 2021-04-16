@@ -21,7 +21,6 @@ router.post("/", activitiesCtrl.create)
 
 
 // edit
-
 router.get('/:id/edit', activitiesCtrl.edit)
 
 // show 

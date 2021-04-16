@@ -1,11 +1,12 @@
 const Activity = require("../models/activity.js");
 
 function index(req, res) {
-    Fruit.find({}, (error, allActivities) => {
-        res.render('index', {
-            activity: allActivities
-        });
-    });
+        Activity.find({}, (error, allActivities) => {
+            res.render('activities/index', {
+                activity: allActivities
+            })
+        })
+}
 
 
 function newActivity(req, res) {
@@ -28,7 +29,7 @@ function create(req, res) {
       }
     
       Activity.create(req.body, (error, createdActivity) => {
-        console.log(createdActivity);
+        console.log(createdActivity)
         res.redirect("/activities")
       })
     }
@@ -43,11 +44,11 @@ function show(req, res) {
 
 
 module.exports = {
-    index, 
-    new: newActivity, 
+    index,
+    new: newActivity,
     delete: destroy,
     update,
     create,
     edit,
     show
-}
+  }
