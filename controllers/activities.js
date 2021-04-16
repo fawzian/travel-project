@@ -14,8 +14,11 @@ function newActivity(req, res) {
 }
 
 function destroy(req, res) {
-    res.send("destroy")
+    Activity.findByIdAndRemove(req.params.id, (error, data) => {
+        res.redirect("/activities")
+    })
 }
+
 
 function update(req, res) {
   if(req.body.booked === 'on') {
@@ -25,15 +28,6 @@ function update(req, res) {
   }
   Activity.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, updatedModel) => (res.redirect('/activities')))
 }
-
-// if (req.body.readyToEat === 'on') {
-//     req.body.readyToEat = 'true'
-// } else {
-//     req.body.readyToEat = 'false'
-// }
-// // res.send(req.body)
-// Fruit.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, updatedModel) => (res.redirect('/fruits')))
-// })
 
 function create(req, res) {
     if (req.body.booked === "on") {
