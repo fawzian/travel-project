@@ -53,9 +53,14 @@ function edit(req, res) {
 
 
 function show(req, res) {
-    res.send("show")
+    Activity.findById(req.params.id, (err, foundActivity) => {
+        res.render("activities/show", {activity: foundActivity})
+    })
 }
 
+// Fruit.findById(req.params.id, (err, foundFruit)=>{
+//     res.render("show", {fruits: foundFruit});
+// });
 
 module.exports = {
     index,

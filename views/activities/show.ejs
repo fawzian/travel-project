@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Activity Information</h1>
+        The <%= activity.name %> is <%= activity.description %>.
+
+        <% if (activity.booked) { %>
+        This activity is booked.
+        <% } else { %>
+    This activity is not booked.
+            <% } %>
+    </body>
+</html>
