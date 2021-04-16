@@ -83,7 +83,7 @@ app.use(
 /////////////////////////////////////
 
 //HomeRouter
-app.get("/", HomeRouter);
+app.use("/", HomeRouter);
 
 
 // activities pages
