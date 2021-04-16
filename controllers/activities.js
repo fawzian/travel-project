@@ -1,7 +1,7 @@
 const Activity = require("../models/activity.js");
 
 function index(req, res) {
-        Activity.find({}, (error, allActivities) => {
+        Activity.find({username: req.user.username}, (error, allActivities) => {
             res.render('activities/index', {
                 activity: allActivities
             })
@@ -36,6 +36,7 @@ function create(req, res) {
         req.body.booked = false;
       }
     
+      req.body.username = req.user.username
       Activity.create(req.body, (error, createdActivity) => {
         console.log(createdActivity)
         res.redirect("/activities")

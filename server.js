@@ -25,7 +25,6 @@ const cors = require("cors");
 const PORT = process.env.PORT || "2021";
 const SECRET = process.env.SECRET || "secret"
 const HomeRouter = require("./routes/home.js");
-const ActivitiesRouter = require("./routes/activities")
 
 // Sessions Middleware
 const session = require("express-session"); // create session cookies
@@ -86,8 +85,6 @@ app.use(
 app.use("/", HomeRouter);
 
 
-// activities pages
- app.use("/activities", ActivitiesRouter);
 
 
 

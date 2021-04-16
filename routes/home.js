@@ -2,11 +2,58 @@
 // Import Router
 ////////////////////////////////
 const router = require("express").Router()
+const activitiesCtrl = require('../controllers/activities')
+
 
 // user and password stuff
 const bcrypt = require("bcryptjs")
 const User = require("../models/user")
 
+
+
+// authorization
+
+const addUserToRequest = async (req, res, next) => {
+    if (req.session.userId){
+        req.user = await User.findById(req.session.userId)
+        next()
+    } else {
+        next()
+    }
+}
+
+// authorization
+
+const isAuthorized = (req, res, next) => {
+    if (req.user){
+        next()
+    } else {
+        res.redirect("/auth/login")
+    }
+}
+
+
+///////////////////////////////
+// Router Specific Middleware
+////////////////////////////////
+
+// middleware runs everytime route is requested - checking if the user is logged in
+router.use(addUserToRequest)
+
+
+
+
+
+
+
+
+
+///////////////////////////////
+// Router Routes
+////////////////////////////////
+router.get("/", (req, res) => {
+    res.render("home")
+})
 
 
 // SIGNUP ROUTES
@@ -70,16 +117,36 @@ router.get("/auth/logout", (req, res) => {
 
 
 
-///////////////////////////////
-// Router Specific Middleware
-////////////////////////////////
+// app pages
 
-///////////////////////////////
-// Router Routes
-////////////////////////////////
-router.get("/", (req, res) => {
-    res.render("home")
-})
+// index
+router.get('/activities', isAuthorized, activitiesCtrl.index)
+
+
+// new
+router.get('/activities/new', isAuthorized, activitiesCtrl.new)
+
+
+// delete
+router.delete('/activities/:id', isAuthorized, activitiesCtrl.delete)
+
+// update
+router.put("/activities/:id", isAuthorized, activitiesCtrl.update)
+
+// create
+router.post("/activities", isAuthorized,activitiesCtrl.create)
+
+
+// edit
+router.get('/activities/:id/edit', isAuthorized, activitiesCtrl.edit)
+
+// show 
+router.get('/activities/:id', isAuthorized, activitiesCtrl.show)
+
+
+
+
+
 
 ///////////////////////////////
 // Export Router
