@@ -58,9 +58,6 @@ function show(req, res) {
     })
 }
 
-// Fruit.findById(req.params.id, (err, foundFruit)=>{
-//     res.render("show", {fruits: foundFruit});
-// });
 
 module.exports = {
     index,
