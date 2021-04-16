@@ -12,15 +12,18 @@ const User = require("../models/user")
 // SIGNUP ROUTES
 // signup page
 router.get("/auth/signup", (req, res) => {
-    res.send("signup")
+    res.render("auth/signup")
 })
 
 // after sign up is clicked
 
 router.post("/auth/signup", async (req, res) => {
     try {
-        res.send("signup")
-
+       const salt = await bcrypt.genSalt(10)
+       req.body.password = await bcrypt.hash(req.body.password, salt)
+       console.log(req.body)
+       await User.create(req.body)
+       res.redirect("/auth/login")
     } catch (error) {
         res.json(error)
     }
@@ -29,10 +32,39 @@ router.post("/auth/signup", async (req, res) => {
 // LOGIN ROUTES
 // login page
 
+router.get("/auth/login", (req, res) => {
+    res.render("auth/login")
+})
+
+
 // after login is clicked
 
 
+router.post("/auth/login", async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.body.username})
+        if (user) {
+            const result = await bcrypt.compare(req.body.password, user.password)
+            if(result) {
+                req.session.userId = user._id
+                res.redirect("/activities")
+            } else {
+                res.json({ error: "Password does not match"})
+            }
+        } else {
+            res.json({ error: "User Doesn't Exist" })
+        }
+    } catch (error) {
+        res.json(error)
+    }
+})
 
+// logout route
+
+router.get("/auth/logout", (req, res) => {
+    req.session.userId = null
+    res.redirect('/')
+})
 
 
 
