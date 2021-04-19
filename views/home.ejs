@@ -6,15 +6,31 @@
 
     <body>
         <!-- THE HEADER TAG PARTIAL -->
+        <!-- <%- include("partials/header") %> -->
         <%- include("partials/header") %>
-        <main>
-            <a href="/auth/signup"><button class="button">SIGNUP</button></a>
-            <a href="/auth/login"><button class="button">LOGIN</button></a>
-            <a href="activities/new">new activity</a>
-            <h1>HOME PAGE</h1>
-            <a href="/activities">view your activities</a>
+        <main class="page-container" style="background-color: #f3f1e4;">
+
+<div class="content-wrap">
+
+            
+            <section class="hero is-large">
+                <div class="hero-body">
+                  <div class="">
+                  
+                    <p class="title" style="color: red;">
+                        Your free digital travel itinerary!
+                    </p>
+                    <p class="subtitle">
+                        To start, <a href="#">sign up</a>.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+
         </main>
-        <!-- THE HEAD TAG PARTIAL -->
+        <!-- THE FOOTER TAG PARTIAL -->
         <%- include("partials/footer") %>
     </body>
 </html>

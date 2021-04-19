@@ -5,16 +5,33 @@
     <body>
         <!-- THE HEADER TAG PARTIAL -->
         <%- include("../partials/header") %>
-        <main>
-            <h1>User Signup</h1>
-            <form action="/auth/signup" method="post">
-                <!-- name in input must match schema in model -->
-              <input type="text" placeholder="username" name="username" />
-              <input type="password" placeholder="password" name="password" />
-              <input type="submit" value="sign up" />
+        <main class="page-container"> 
+            <div class="content-wrap">
+            <form action="/auth/signup" method="post" class="box">  
+                <div class="field">
+                    
+                    <br>
+                  <label class="label">Username</label>
+                  <div class="control">
+                    <input type="text" placeholder="username" name="username" />
+                </div>
+                </div>
+              
+                <div class="field">
+                  <label class="label">Password</label>
+                  <div class="control">
+                    <input type="password" placeholder="password" name="password" />
+                </div>
+                </div>
+              
+                <input type="submit" value="sign up" class="button"/>
             </form>
+            </div>
         </main>
         <!-- THE HEAD TAG PARTIAL -->
         <%- include("../partials/footer") %>
     </body>
 </html>
+
+
+
