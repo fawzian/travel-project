@@ -12,7 +12,7 @@
 
 
 
-        <form action="/activities" method="POST" class="box">
+        <form action="/activities/<%=activity.id%>?_method=PUT" method="POST" class="box">
             <div class="field">
               <div class="control">
                 Name: <input type="text" name="name" value="<%=activity.name%>"/><br/>
